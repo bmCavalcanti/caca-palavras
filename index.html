@@ -21,9 +21,12 @@
 
     <div class="mx-auto my-5 container">
         <h3>CAÇA-PALAVRAS 🔎</h3>
+        <div>
+            Tempo decorrido: <span id="time"></span>
+        </div>
         <div class="row mt-5">
-            <div class="col-12 col-lg-10 bg-light p-0">
-                <div class="table-responsive">
+            <div class="col-12 col-lg-10">
+                <div class="table-responsive bg-light">
                     <table class="table table-bordered m-0" id="letters-box"></table>
                 </div>
             </div>
@@ -59,6 +62,13 @@
 
     <script>
         $(document).ready(function() {
+
+            var time = 0;
+            var interval = setInterval(() => {
+                time++;
+                $("#time").html(time + " segundos");
+            }, 1000);
+
             var baseWords = [
                 "ABELHA",
                 "ÁGUIA",
@@ -215,6 +225,7 @@
 
                 if ($("li.text-success").length == words.length) {
                     $("#modal-alert").modal();
+                    clearInterval(interval);
                 }
             }
         });
